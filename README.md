@@ -1,21 +1,82 @@
-# Zoneamento Agroclimático de Culturas de Alto Valor sob Cenários CMIP6
+# Climatic limits to the introduction of hops, pistachio, hazelnut and almond in Brazil
 
-Pipeline computacional em Python para mapeamento de aptidão climática de culturas especiais de alto valor econômico (lúpulo, avelã, amêndoa, pistache, açafrão e trufas) no território brasileiro, sob clima presente (baseline 1991–2020) e projeções futuras CMIP6.
+Code and result tables for the article:
 
-## Funcionalidades
-- Download e processamento de dados **ERA5-Land** via API do Copernicus Climate Data Store (temperatura, precipitação, evapotranspiração potencial)
-- Integração com **WorldClim v2.1** (temperaturas mínimas e máximas mensais) com reamostragem bilinear para grid comum de 0,1°
-- Estimativa de **horas de frio** por modelo probabilístico (Richardson et al., 1974) via CDF normal
-- Projeções **CMIP6 (MIROC6)** com correção de viés pelo método delta
-- Funções de pertinência **fuzzy trapezoidais** para índice de aptidão multicritério
-- Filtragem de uso e cobertura do solo com **MapBiomas Coleção 9**
-- Geração de mapas e figuras para publicação (300 DPI)
+> Bronzeri, J.V., Nassif, D.S.P., Gazzola, J. Climatic limits to the introduction of hops, pistachio, hazelnut and almond in Brazil: validated climate envelopes, limiting factors and CMIP6 projections. Submitted to *European Journal of Agronomy*.
 
-## Stack
-`Python` · `xarray` · `rasterio` · `geopandas` · `numpy` · `scipy` · `matplotlib` · Google Colab
+The pipeline calibrates climate envelopes for four crops from the climate of their global harvested area (CROPGRIDS v1.08), validates them outside Brazil, calibrates the estimate of annual chilling hours against 231 INMET automatic weather stations, and applies the envelopes to Brazil under the reference climate (1991-2020) and under a six-model CMIP6 ensemble (SSP2-4.5, SSP3-7.0 and SSP5-8.5; 2041-2060 and 2071-2090).
 
-## Autora
-Julia Vilutis Bronzeri — Programa de Pós-Graduação em Agricultura e Ambiente, UFSCar Araras.
-Pipeline vinculado a manuscrito científico e a resumo submetido ao AGU Annual Meeting 2026.
+## Repository structure
 
-*Os dados de entrada são públicos (ERA5-Land, WorldClim, CMIP6, MapBiomas); nenhum dado proprietário é distribuído neste repositório.*
+```
+scripts/    13 scripts, run in numerical order
+results/    result tables (CSV/JSON) used in the article tables and text
+results/figures/   article figures (PNG)
+```
+
+Code comments and printed messages are in Portuguese; variable names follow the article (tmean, tmin, tmax, precip, frio = chilling hours).
+
+## How to run
+
+The scripts were written and run as Google Colab cells, reading and writing to a Google Drive folder (`/content/drive/MyDrive/era5_brasil`). To reproduce:
+
+1. Open a Colab notebook, mount Google Drive (`from google.colab import drive; drive.mount("/content/drive")`) and install the dependencies (`pip install -r requirements.txt`).
+2. Create an account at the Copernicus Climate Data Store (CDS), accept the ERA5-Land and CMIP6 licences, and replace `SEU-TOKEN-AQUI` with your personal token in scripts 01, 05 and 11.
+3. Download the MapBiomas Collection 9 land cover map for 2023 (GeoTIFF, 30 m) from https://brasil.mapbiomas.org and set its path in script 04.
+4. Paste and run each script, in order, as a Colab cell.
+
+| Step | Script | What it does | Main outputs |
+|---|---|---|---|
+| 1 | `01_era5_land_download.py` | ERA5-Land monthly means 1991-2020 (2 m temperature, precipitation, potential evaporation) | `brasil_*_1991_2020.nc` |
+| 2 | `02_worldclim_brazil.py` | WorldClim v2.1 (10 arc-min) monthly Tmin and Tmax, clipped to Brazil | `worldclim_*_brasil.nc` |
+| 3 | `03_baseline_climatology.py` | Reference climatology on the 0.1° ERA5-Land grid | `climatologia_completa_brasil.nc` |
+| 4 | `04_mapbiomas_mask.py` | Majority MapBiomas class per 0.1° cell and agricultural-use mask | `mapbiomas_mask_era5.nc` |
+| 5 | `05_miroc6_download.py` | MIROC6 tas and pr (historical, SSP2-4.5, SSP5-8.5) for the single-model analysis | `cmip6/*.nc` |
+| 6 | `06_inmet_chill_validation.py` | Observed chilling hours at INMET stations (2008-2020) and comparison with monthly-data methods | `frio_inmet_anual_v4.csv`, `validacao_frio_inmet_v4.csv`, `validacao_frio_resumo_v4.csv` |
+| 7 | `07_chill_sigma_calibration.py` | Calibration of day-to-day variability (σ) in the sinusoidal chill model, with 5-fold cross-validation | `frio_sigma_v4.json`, `frio_sigma_curva_v4.csv`, `frio_sigma_resumo_v4.csv`, Figure 1 |
+| 8 | `08_global_data.py` | Global WorldClim variables (with calibrated chilling hours), CROPGRIDS maps, municipality coordinates | `worldclim_vars.npz`, `cropgrids/` |
+| 9 | `09_calibration_global_validation.py` | Envelope calibration (area-weighted percentiles), global validation, leave-one-region-out, independent producing regions, sensitivity | `parametros_v4.csv/json`, `percentis_v4.json`, `validacao_global_v4.csv`, `validacao_pontos_v4.csv`, `sensibilidade_global_v4.csv` |
+| 10 | `10_brazil_suitability.py` | Application to Brazil, limiting factors, MIROC6 scenarios, sensitivity, hop-producing municipalities | `brasil_v4.csv`, `fatores_limitantes_v4.nc`, `sensibilidade_brasil_v4.csv`, `lupulo_municipios_v4.csv` |
+| 11 | `11_cmip6_ensemble_download.py` | CMIP6 ensemble (MIROC6, GFDL-ESM4, IPSL-CM6A-LR, MPI-ESM1-2-LR, MRI-ESM2-0, UKESM1-0-LL; tas, tasmin, tasmax, pr). The download queue resumes if the session drops. | `cmip6/ensemble/{model}/{var}_{experiment}.nc` |
+| 12 | `12_cmip6_ensemble.py` | Monthly delta method per variable, model bias, warming, thermal suitability by model, scenario and period, model agreement | `ensemble_modelos_v4.csv`, `ensemble_resumo_v4.csv`, `ensemble_vies_v4.csv`, `ensemble_concordancia_v4.nc` |
+| 13 | `13_figures.py` | Article figures (`IDIOMA = "en"`) | `figuras/fig*.png` |
+
+Steps 6 and 7 must run before steps 8, 10 and 12, which read the calibrated σ from `frio_sigma_v4.json`.
+
+## Correspondence between figures and files
+
+| Article | File |
+|---|---|
+| Fig. 1 | `fig6_validacao_frio.png` |
+| Fig. 2 | `fig5_indice_global.png` |
+| Fig. 3 | `fig1_criterios_atendidos.png` |
+| Fig. 4 | `fig2_fatores_limitantes.png` |
+| Fig. 5 | `fig3_concordancia_modelos.png` |
+| Fig. 6 | `fig4_area_por_cenario.png` |
+
+## Notes
+
+- Scripts 01 to 05 consolidate the preprocessing cells of the original exploratory notebook into single scripts; the data requests and processing steps are the same. Script 03 was checked against the original `climatologia_completa_brasil.nc` (identical temperature and precipitation fields).
+- Monthly precipitation totals were obtained from ERA5-Land mean daily rates multiplied by 30 days, as in the original processing.
+- Tmin and Tmax come from WorldClim v2.1 (1970-2000), whereas mean temperature and precipitation come from ERA5-Land (1991-2020). This mismatch is discussed in the article.
+- The INMET hourly data (step 6) are downloaded from https://portal.inmet.gov.br/dadoshistoricos.
+
+## Data sources
+
+All input data are public:
+
+- ERA5-Land monthly means (Muñoz-Sabater et al., 2021) and CMIP6 projections, Copernicus Climate Data Store
+- WorldClim v2.1 (Fick and Hijmans, 2017)
+- CROPGRIDS v1.08 (Tang et al., 2024), https://doi.org/10.6084/m9.figshare.22491997
+- MapBiomas Collection 9 (Souza et al., 2020)
+- INMET automatic weather stations
+- Natural Earth admin-1 boundaries
+- Municipality coordinates: https://github.com/kelvins/municipios-brasileiros
+
+## Licence
+
+Code: MIT (see `LICENSE`). Input datasets keep their original licences.
+
+## How to cite
+
+See `CITATION.cff` or the Zenodo record of this repository.
