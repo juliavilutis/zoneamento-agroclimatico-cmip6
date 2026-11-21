@@ -1,0 +1,56 @@
+cultura,regiao,tmean,tmin,tmax,precip,frio,indice,apta,criterios_zerados
+Lúpulo,Hallertau (Alemanha),8.3,-4.1,23.3,785.0,2647.7,1.0,True,
+Lúpulo,Tettnang (Alemanha),8.9,-2.8,23.3,1043.0,2737.6,1.0,True,
+Lúpulo,Zatec (Rep. Tcheca),8.5,-3.9,23.5,641.0,2627.7,1.0,True,
+Lúpulo,Zalec (Eslovênia),9.1,-4.4,24.9,1249.0,2449.3,0.83,True,
+Lúpulo,Lublin (Polônia),7.9,-6.5,23.8,503.0,2104.9,0.98,True,
+Lúpulo,Kent (Reino Unido),9.7,1.2,21.4,694.0,2963.5,0.0,False,tmax
+Lúpulo,Yakima (EUA),10.7,-4.5,30.8,186.0,2285.8,0.84,True,
+Lúpulo,Willamette (EUA),11.5,0.9,27.6,1030.0,2498.2,0.95,True,
+Lúpulo,Treasure Valley (EUA),10.6,-5.8,31.7,273.0,2193.7,0.96,True,
+Lúpulo,Motueka (Nova Zelândia),12.9,2.6,22.8,1253.0,1424.6,0.0,False,tmin
+Lúpulo,Bushy Park (Austrália),10.6,1.4,21.9,853.0,2413.6,0.71,True,
+Lúpulo,George (África do Sul),15.7,6.3,25.0,533.0,557.6,0.0,False,"tmin, frio"
+Lúpulo,El Bolsón (Argentina),7.8,-2.4,21.0,1028.0,3413.9,0.0,False,tmax
+Pistache,Rafsanjan (Irã),17.5,-0.5,36.5,137.0,1268.8,0.83,True,
+Pistache,Kerman (Irã),16.0,-1.4,33.6,121.0,1433.8,0.0,False,precip
+Pistache,Yazd (Irã),19.0,-1.0,39.5,106.0,1155.2,0.0,False,precip
+Pistache,Madera (EUA),16.4,1.6,35.2,259.0,1318.3,1.0,True,
+Pistache,Bakersfield (EUA),18.2,2.3,36.9,158.0,1006.3,0.93,True,
+Pistache,Gaziantep (Turquia),15.1,-1.7,35.8,532.0,1871.1,1.0,True,
+Pistache,Sanliurfa (Turquia),18.0,0.9,39.3,439.0,1451.1,0.87,True,
+Pistache,Siirt (Turquia),16.3,-1.0,37.9,711.0,1767.5,0.99,True,
+Pistache,Aleppo (Síria),17.6,1.6,35.5,354.0,1350.8,1.0,True,
+Pistache,Bronte (Itália),14.7,3.9,28.7,558.0,1331.4,1.0,True,
+Pistache,Egina (Grécia),17.3,6.3,31.4,444.0,629.1,0.86,True,
+Pistache,Ciudad Real (Espanha),14.9,0.7,34.6,401.0,1669.8,1.0,True,
+Pistache,Sfax (Tunísia),19.1,6.7,32.5,232.0,364.6,0.78,True,
+Avelã,Ordu (Turquia),12.5,1.1,24.5,961.0,2009.7,0.79,True,
+Avelã,Giresun (Turquia),13.4,2.8,25.1,1058.0,1719.0,0.0,False,precip
+Avelã,Trabzon (Turquia),12.7,1.2,25.3,905.0,1984.8,0.9,True,
+Avelã,Sakarya (Turquia),14.3,2.6,28.2,789.0,1605.3,0.97,True,
+Avelã,Viterbo (Itália),13.7,2.2,29.5,309.0,1861.1,0.82,True,
+Avelã,Alba (Itália),13.2,0.1,27.9,590.0,2040.0,1.0,True,
+Avelã,Avellino (Itália),12.4,1.7,25.5,834.0,2154.3,0.96,True,
+Avelã,McMinnville (EUA),10.9,0.9,26.7,1277.0,2689.1,0.0,False,precip
+Avelã,Reus (Espanha),15.9,4.3,29.2,535.0,952.3,0.73,True,
+Avelã,Zaqatala (Azerbaijão),13.2,-2.3,30.5,735.0,2067.5,1.0,True,
+Avelã,Zugdidi (Geórgia),13.4,0.1,26.5,1800.0,1835.0,0.0,False,precip
+Avelã,Talca (Chile),14.0,3.6,28.9,868.0,1437.5,0.83,True,
+Avelã,Temuco (Chile),11.7,3.2,24.4,1333.0,2140.8,0.0,False,precip
+Amêndoa,Fresno (EUA),17.6,2.7,36.9,281.0,1116.6,0.94,True,
+Amêndoa,Modesto (EUA),16.5,2.4,34.2,311.0,1175.3,1.0,True,
+Amêndoa,Chico (EUA),16.1,1.9,34.2,611.0,1319.8,1.0,True,
+Amêndoa,Bakersfield (EUA),18.2,2.3,36.9,158.0,1006.3,0.0,False,precip
+Amêndoa,Albacete (Espanha),14.3,0.1,33.5,378.0,1790.9,1.0,True,
+Amêndoa,Murcia (Espanha),17.3,4.2,32.6,312.0,825.0,1.0,True,
+Amêndoa,Lleida (Espanha),14.9,1.3,32.1,365.0,1617.9,1.0,True,
+Amêndoa,Granada (Espanha),14.4,1.1,33.3,456.0,1676.7,1.0,True,
+Amêndoa,Mildura (Austrália),17.2,4.5,32.2,303.0,767.2,1.0,True,
+Amêndoa,Renmark (Austrália),17.3,4.8,32.6,269.0,746.9,1.0,True,
+Amêndoa,Beja (Portugal),16.5,5.6,32.3,566.0,712.0,1.0,True,
+Amêndoa,Mirandela (Portugal),13.6,3.6,26.3,1250.0,1382.9,0.0,False,precip
+Amêndoa,Meknes (Marrocos),17.3,4.8,33.2,516.0,702.2,1.0,True,
+Amêndoa,Bari (Itália),15.7,4.6,29.4,549.0,1028.6,1.0,True,
+Amêndoa,Agrigento (Itália),17.6,7.8,30.0,432.0,339.4,0.0,False,tmin
+Amêndoa,Sfax (Tunísia),19.1,6.7,32.5,232.0,364.6,0.74,True,

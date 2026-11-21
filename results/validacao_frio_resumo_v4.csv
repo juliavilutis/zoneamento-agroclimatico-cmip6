@@ -1,0 +1,5 @@
+grupo,n,metodo,vies_h,erro_abs_medio_h,RMSE_h,r
+todas as estações,231,senoidal (novo),-78.87,90.86,168.63,0.59
+todas as estações,231,distribuição normal (original),-98.42,100.83,189.56,0.66
+estações com 50 h ou mais,91,senoidal (novo),-189.09,209.67,263.7,0.54
+estações com 50 h ou mais,91,distribuição normal (original),-240.24,240.24,301.23,0.57

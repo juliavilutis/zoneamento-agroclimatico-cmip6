@@ -1,0 +1,7 @@
+metodo,grupo,vies_h,erro_abs_medio_h,RMSE_h,r
+senoidal sem variabilidade (sigma = 0),todas,-78.87,90.86,168.63,0.59
+senoidal com sigma = 2.75,todas,8.92,70.87,118.73,0.79
+validação cruzada (5 partes),todas,-0.37,69.79,120.67,0.77
+senoidal sem variabilidade (sigma = 0),50 h ou mais,-189.09,209.67,263.7,0.54
+senoidal com sigma = 2.75,50 h ou mais,-18.08,131.0,168.46,0.67
+validação cruzada (5 partes),50 h ou mais,-34.82,133.45,173.57,0.66
