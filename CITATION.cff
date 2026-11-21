@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite it as below."
+title: "Code and data for: Climatic limits to the introduction of hops, pistachio, hazelnut and almond in Brazil"
+version: 1.0.0
+date-released: 2026-11-21
+license: MIT
+repository-code: "https://github.com/juliavilutis/zoneamento-agroclimatico-cmip6"
+type: software
+authors:
+  - family-names: Bronzeri
+    given-names: Julia Vilutis
+    orcid: "https://orcid.org/0009-0002-0985-3184"
+    affiliation: "Universidade Federal de São Carlos (UFSCar)"
+  - family-names: Nassif
+    given-names: Daniel Silveira Pinto
+    affiliation: "Universidade Federal de São Carlos (UFSCar)"
+  - family-names: Gazzola
+    given-names: Jonathan
+    affiliation: "Universidade Federal de São Carlos (UFSCar)"
+keywords:
+  - climate envelope
+  - crop suitability
+  - chilling hours
+  - CMIP6
+  - Brazil

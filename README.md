@@ -43,6 +43,26 @@ The scripts were written and run as Google Colab cells, reading and writing to a
 
 Steps 6 and 7 must run before steps 8, 10 and 12, which read the calibrated σ from `frio_sigma_v4.json`.
 
+## Result files (`results/`)
+
+| File | Content | Used in |
+|---|---|---|
+| `parametros_v4.csv`, `parametros_v4.json` | Envelope parameters [a, b, c, d] by crop and variable | Table 3 |
+| `percentis_v4.json` | Area-weighted percentiles used for calibration and sensitivity | Section 2.5 |
+| `validacao_global_v4.csv` | Harvested area suitable, global land suitable, AUC, leave-one-region-out | Table 4 |
+| `validacao_pontos_v4.csv` | Climate and suitability at 55 independent producing regions | Table 4, Section 3.2 |
+| `sensibilidade_global_v4.csv`, `sensibilidade_brasil_v4.csv` | Sensitivity to percentiles, threshold and aggregation rule | Table 8 |
+| `brasil_v4.csv` | Suitable and thermally suitable area in Brazil, share of territory excluded by each criterion | Table 5 |
+| `fatores_limitantes_v4.nc` | Maps of criteria met and limiting factors in Brazil | Figs. 3 and 4 |
+| `lupulo_municipios_v4.csv` | Climate and criteria met at 90 hop-producing municipalities | Section 3.3 |
+| `ensemble_modelos_v4.csv`, `ensemble_resumo_v4.csv`, `ensemble_vies_v4.csv` | Results by CMIP6 model, ensemble summary, model bias | Tables 6 and 7, Fig. 6 |
+| `ensemble_concordancia_v4.nc` | Number of models placing each cell within the thermal envelope | Fig. 5 |
+| `frio_inmet_anual_v4.csv` | Observed annual chilling hours by INMET station and year | Section 2.3 |
+| `validacao_frio_inmet_v4.csv`, `validacao_frio_resumo_v4.csv` | Observed and estimated chilling hours by station; error statistics | Table 2 |
+| `frio_sigma_v4.json`, `frio_sigma_curva_v4.csv`, `frio_sigma_resumo_v4.csv` | Calibrated σ, error curve and cross-validation | Table 2, Fig. 1 |
+
+The two NetCDF files were saved with zlib compression after the analysis; their values are identical to the files written by the scripts.
+
 ## Correspondence between figures and files
 
 | Article | File |
